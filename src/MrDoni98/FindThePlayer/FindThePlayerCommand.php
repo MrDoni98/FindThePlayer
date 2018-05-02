@@ -41,7 +41,7 @@ class FindThePlayerCommand extends Command
             $sender->sendMessage(TextFormat::RED."Use command in game!");
             return false;
         }
-        if(count($args) === 0){
+        if(!isset($args[0])){
             if(isset($this->plugin->players[$sender->getName()])){
                 unset($this->plugin->players[$sender->getName()]);
                 $pk = new SetSpawnPositionPacket();
@@ -58,7 +58,11 @@ class FindThePlayerCommand extends Command
                 return true;
             }
         }else{
-            if(!is_null($wanted = $this->plugin->getServer()->getPlayerExact($args[1]))){
+            if(!is_null($wanted = $this->plugin->getServer()->getPlayerExact($args[0]))){
+                if($wanted->getName() === $sender->getName()){
+                    $sender->sendMessage("Do you want to find yourself ?! Here I will not help you ...");
+                    return true;
+                }
                 $this->plugin->players[$sender->getName()] = $wanted;
                 $pk = new SetSpawnPositionPacket();
                 $pk->x = $wanted->getFloorX();

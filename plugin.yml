@@ -1,6 +1,6 @@
 name: FindThePlayer
-main: MrDoni98/FindThePlayer/Main
-api: 3.0.0
+main: MrDoni98\FindThePlayer\Main
+api: 3.0.0-ALPHA12
 version: 1.0
 author: MrDoni98
 description: "search for a player with a compass"
